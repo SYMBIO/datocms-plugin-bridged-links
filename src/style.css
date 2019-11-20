@@ -1,0 +1,51 @@
+.container {
+  background-color: white;
+  padding: 0;
+  color: #848484;
+}
+
+.drop-active {
+  outline: 2px dotted #ed6b5e;
+  outline-offset: -2px;
+}
+
+.can-drop {
+  background-color: #ed6b5e !important;
+  color: white !important;
+}
+
+ul li {
+  display: inline-block;
+  padding: 10.8px;
+  border: 1px solid #f0f0f0;
+  border-radius: 4px;
+  padding: .75rem;
+  width: 100%;
+}
+
+svg.hamburger {
+  cursor: grab;
+  margin-right: 10px;
+  fill: currentcolor;
+  color: rgb(132, 132, 132);
+}
+
+ul div {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+  margin-bottom: .75rem;
+  touch-action: none;
+  user-select: none;
+  cursor: default !important;
+  background: white;
+}
+
+ul div:last-child {
+  margin-bottom: 0;
+}
+
+button:first-of-type {
+  margin-left: 5px;
+}
