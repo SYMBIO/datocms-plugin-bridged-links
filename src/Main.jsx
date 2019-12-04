@@ -14,6 +14,9 @@ import './style.css';
   getFieldValue: plugin.getFieldValue,
   setFieldValue: plugin.setFieldValue,
   editItem: plugin.editItem,
+  createNewItem: plugin.createNewItem,
+  field: plugin.field,
+  itemTypes: plugin.itemTypes,
 }))
 export default class Main extends Component {
   static propTypes = {
@@ -25,6 +28,9 @@ export default class Main extends Component {
     getFieldValue: PropTypes.func,
     setFieldValue: PropTypes.func,
     editItem: PropTypes.func,
+    createNewItem: PropTypes.func,
+    field: PropTypes.object,
+    itemTypes: PropTypes.object,
   };
 
   state = {
@@ -64,8 +70,11 @@ export default class Main extends Component {
             className="DatoCMS-button--micro"
             onClick={() => {
               editItem(fieldValue)
-                .then(() => {
-                  this.updateData(true);
+                .then((item) => {
+                  if (item) {
+                    this.updateData();
+                    console.log(item);
+                  }
                 });
             }}
           >
@@ -130,13 +139,13 @@ export default class Main extends Component {
       overlap: 0.05,
 
       ondropactivate(event) {
-        event.target.classList.toggle('drop-active');
+        event.target.querySelector('li').classList.toggle('drop-active');
       },
       ondragenter(event) {
-        event.relatedTarget.classList.toggle('can-drop');
+        event.relatedTarget.querySelector('li').classList.toggle('can-drop');
       },
       ondragleave(event) {
-        event.relatedTarget.classList.toggle('can-drop');
+        event.relatedTarget.querySelector('li').classList.toggle('can-drop');
       },
       ondrop(event) {
         const dropzoneArrayIndex = values.indexOf(event.target.id.split('_')[1]);
@@ -149,12 +158,12 @@ export default class Main extends Component {
         );
         values.splice(draggableArrayIndex, 1, removedValue[0]);
 
-        event.relatedTarget.classList.toggle('can-drop');
+        event.relatedTarget.querySelector('li').classList.toggle('can-drop');
         setFieldValue(fieldPath, values);
       },
       ondropdeactivate(event) {
         const e = event;
-        e.target.classList.toggle('drop-active');
+        event.target.querySelector('li').classList.toggle('drop-active');
         e.relatedTarget.style.transform = 'translate(0px, 0px)';
         position.y = 0;
       },
@@ -163,7 +172,7 @@ export default class Main extends Component {
     interact('ul div').draggable({
       modifiers: [
         interact.modifiers.restrictRect({
-          restriction: '.container',
+          restriction: 'parent',
           endOnly: false,
         }),
       ],
@@ -174,25 +183,38 @@ export default class Main extends Component {
           if (values.length > 1) {
             const draggableElement = event.target;
 
+            // if (event.target.classList === 'svg .hamburger') {
+            // console.log(event.currentTarget);
             position.x += event.dx;
             position.y += event.dy;
 
             draggableElement.style.transform = `translate(${position.x}px, ${position.y}px)`;
+            // }
           }
         },
       },
     });
   }
 
-  updateData(cache) {
+  // ConvertModelIdToName(modelID) {
+  //   const { itemTypes } = this.props;
+  //   const { ConvertApiKeyToName } = this;
+
+  //   return ConvertApiKeyToName(itemTypes[modelID].attributes.api_key);
+  // }
+
+  updateData() {
     const {
-      token, itemId, fieldPath, apiKey, itemType, getFieldValue,
+      token, itemId, fieldPath, apiKey, itemType, getFieldValue, field, itemTypes,
     } = this.props;
-    const { values } = this.state;
     const { ConvertApiKeyToName } = this;
+    const { data } = this.state;
 
     const apiKeyName = ConvertApiKeyToName(apiKey).split('.');
     const fieldPathName = ConvertApiKeyToName(fieldPath);
+
+    console.log(field);
+    console.log(itemTypes);
 
     this.setState({
       loading: true,
@@ -223,11 +245,13 @@ export default class Main extends Component {
     })
       .then(res => res.json())
       .then((res) => {
-        this.setState({
-          loading: false,
-          data: res.data.production[fieldPathName],
-          values: !cache ? getFieldValue(fieldPath) : values,
-        });
+        if (!Array.isArray(data)) {
+          this.setState({
+            loading: false,
+            data: res.data.production[fieldPathName],
+            values: getFieldValue(fieldPath),
+          });
+        }
         this.initializeInteract();
       })
       .catch((error) => {
@@ -240,6 +264,9 @@ export default class Main extends Component {
 
   render() {
     const { loading, data, values } = this.state;
+    const {
+      createNewItem, field, setFieldValue, fieldPath,
+    } = this.props;
 
     if (loading) {
       return <div className="container">Načítám data...</div>;
@@ -256,6 +283,27 @@ export default class Main extends Component {
               {values.map(fieldValue => (
                 this.getAdvertisementRow(fieldValue)
               ))}
+              <button
+                type="button"
+                className="DatoCMS-button--micro"
+                onClick={() => {
+                  createNewItem(field.attributes.validators.items_item_type.item_types[0])
+                    .then((item) => {
+                      if (item) {
+                        values.push(item.id);
+                        setFieldValue(fieldPath, values);
+                        console.log('Item created: ', item);
+                      }
+                    });
+                }}
+              >
+                <svg viewBox="0 0 448 512" width="1em" height="1em"><path d="M416 208H272V64c0-17.67-14.33-32-32-32h-32c-17.67 0-32 14.33-32 32v144H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h144v144c0 17.67 14.33 32 32 32h32c17.67 0 32-14.33 32-32V304h144c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z" /></svg>
+                Nový záznam
+              </button>
+              <button type="button" className="DatoCMS-button--micro">
+                <svg viewBox="0 0 576 512" width="1em" height="1em"><path d="M572.694 292.093L500.27 416.248A63.997 63.997 0 0 1 444.989 448H45.025c-18.523 0-30.064-20.093-20.731-36.093l72.424-124.155A64 64 0 0 1 152 256h399.964c18.523 0 30.064 20.093 20.73 36.093zM152 224h328v-48c0-26.51-21.49-48-48-48H272l-64-64H48C21.49 64 0 85.49 0 112v278.046l69.077-118.418C86.214 242.25 117.989 224 152 224z" /></svg>
+                Z knihovny
+              </button>
             </ul>
           ) : 'Zatím žádné hodnoty...'
           : 'V cílovém modelu nejsou žádné záznamy, nebo jste chybně zadali cestu...'

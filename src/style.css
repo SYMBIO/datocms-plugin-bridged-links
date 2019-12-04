@@ -12,6 +12,7 @@
 .can-drop {
   background-color: #ed6b5e !important;
   color: white !important;
+  z-index: 100;
 }
 
 ul li {
@@ -21,6 +22,7 @@ ul li {
   border-radius: 4px;
   padding: .75rem;
   width: 100%;
+  background: white;
 }
 
 svg.hamburger {
@@ -39,7 +41,6 @@ ul div {
   touch-action: none;
   user-select: none;
   cursor: default !important;
-  background: white;
 }
 
 ul div:last-child {
@@ -48,4 +49,10 @@ ul div:last-child {
 
 button:first-of-type {
   margin-left: 5px;
+}
+
+.DatoCMS-button--micro svg {
+  fill: #ed6b5e;
+  margin-right: .5em;
+  vertical-align: text-top;
 }
