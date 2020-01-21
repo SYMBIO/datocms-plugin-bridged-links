@@ -50,7 +50,6 @@ export default class Main extends Component {
       apiKey,
       itemType,
       getFieldValue,
-      field,
     } = this.props;
     const { data } = this.state;
 
@@ -97,7 +96,7 @@ export default class Main extends Component {
         }
         this.initializeInteract();
       })
-      .catch(error => {
+      .catch(() => {
         this.setState({
           loading: false,
         });
