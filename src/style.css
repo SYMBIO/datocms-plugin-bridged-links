@@ -23,6 +23,8 @@ ul li {
   padding: .75rem;
   width: 100%;
   background: white;
+  color: #34363a;
+  font-size: 0.8375rem;
 }
 
 svg.hamburger {
