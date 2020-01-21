@@ -26,7 +26,7 @@ Start the local development server with:
 npm run start
 ```
 
-The plugin will be served from [https://datocms-plugin-grouped-links.localtunnel.me/](https://datocms-plugin-grouped-links.localtunnel.me/). Insert this URL as the plugin [Entry point URL](https://www.datocms.com/docs/plugins/creating-a-new-plugin/).
+The plugin will be served from [https://datocms-plugin-grouped-links.tunnel.datahub.at/](https://datocms-plugin-grouped-links.localtunnel.me/). Insert this URL as the plugin [Entry point URL](https://www.datocms.com/docs/plugins/creating-a-new-plugin/).
 
 ## Publishing
 
