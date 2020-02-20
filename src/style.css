@@ -53,6 +53,11 @@ button:first-of-type {
   margin-left: 5px;
 }
 
+.DatoCMS-button {
+  border-radius: 4px;
+  border: 1px solid rgba(0,0,0,.05);
+}
+
 .DatoCMS-button--micro svg {
   fill: #ed6b5e;
   margin-right: .5em;

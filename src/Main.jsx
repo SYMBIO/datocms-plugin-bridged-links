@@ -243,7 +243,7 @@ export default class Main extends Component {
           'subtitle_advertises' ? this.DetectBreaks(dataRow.breaks) : ''}`}
           <button
             type="button"
-            className="DatoCMS-button--micro"
+            className="DatoCMS-button DatoCMS-button--small"
             onClick={() => {
               editItem(fieldValue)
                 .then(item => {
@@ -257,7 +257,7 @@ export default class Main extends Component {
           </button>
           <button
             type="button"
-            className="DatoCMS-button--micro"
+            className="DatoCMS-button DatoCMS-button--small"
             onClick={() => {
               values.splice(values.indexOf(fieldValue), 1);
               setFieldValue(fieldPath, values);
