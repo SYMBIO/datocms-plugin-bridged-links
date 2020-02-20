@@ -111,22 +111,22 @@ export default class Main extends Component {
     const { setFieldValue, fieldPath } = this.props;
     const { values } = this.state;
 
-    interact('ul div')
+    interact('ul li')
       .dropzone({
         overlap: 0.05,
 
         ondropactivate(event) {
-          event.target.querySelector('li')
+          event.target.querySelector('div')
             .classList
             .toggle('drop-active');
         },
         ondragenter(event) {
-          event.relatedTarget.querySelector('li')
+          event.relatedTarget.querySelector('div')
             .classList
             .toggle('can-drop');
         },
         ondragleave(event) {
-          event.relatedTarget.querySelector('li')
+          event.relatedTarget.querySelector('div')
             .classList
             .toggle('can-drop');
         },
@@ -145,14 +145,14 @@ export default class Main extends Component {
           );
           values.splice(draggableArrayIndex, 1, removedValue[0]);
 
-          event.relatedTarget.querySelector('li')
+          event.relatedTarget.querySelector('div')
             .classList
             .toggle('can-drop');
           setFieldValue(fieldPath, values);
         },
         ondropdeactivate(event) {
           const e = event;
-          event.target.querySelector('li')
+          event.target.querySelector('div')
             .classList
             .toggle('drop-active');
           e.relatedTarget.style.transform = 'translate(0px, 0px)';
