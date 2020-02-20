@@ -15,7 +15,7 @@
   z-index: 100;
 }
 
-ul li {
+ul li > div {
   display: inline-block;
   padding: 10.8px;
   border: 1px solid #f0f0f0;
@@ -34,7 +34,7 @@ svg.hamburger {
   color: rgb(132, 132, 132);
 }
 
-ul div {
+ul li {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -45,7 +45,7 @@ ul div {
   cursor: default !important;
 }
 
-ul div:last-child {
+ul li:last-child {
   margin-bottom: 0;
 }
 
