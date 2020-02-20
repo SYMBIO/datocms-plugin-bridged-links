@@ -77,3 +77,8 @@ button:first-of-type {
 .BelongsToInput__actions {
   margin-top: 8px;
 }
+
+.AdjacentButtons>* {
+  display: inline-block;
+  margin-right: 4px;
+}

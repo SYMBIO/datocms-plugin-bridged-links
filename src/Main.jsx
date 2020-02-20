@@ -293,36 +293,38 @@ export default class Main extends Component {
           )}
         </ul>
         <div className="BelongsToInput__actions">
-          <button
-            type="button"
-            className="DatoCMS-button DatoCMS-button--small"
-            onClick={() => {
-              createNewItem(
-                field.attributes.validators.items_item_type.item_types[0],
-              )
-                .then(item => {
-                  if (item) {
-                    values.push(item.id);
-                    setFieldValue(fieldPath, values);
-                  }
-                });
-            }}
-          >
-            <svg viewBox="0 0 448 512" width="1em" height="1em">
-              <path
-                d="M416 208H272V64c0-17.67-14.33-32-32-32h-32c-17.67 0-32 14.33-32 32v144H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h144v144c0 17.67 14.33 32 32 32h32c17.67 0 32-14.33 32-32V304h144c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z"
-              />
-            </svg>
-            Nový záznam
-          </button>
-          <button type="button" className="DatoCMS-button DatoCMS-button--small">
-            <svg viewBox="0 0 576 512" width="1em" height="1em">
-              <path
-                d="M572.694 292.093L500.27 416.248A63.997 63.997 0 0 1 444.989 448H45.025c-18.523 0-30.064-20.093-20.731-36.093l72.424-124.155A64 64 0 0 1 152 256h399.964c18.523 0 30.064 20.093 20.73 36.093zM152 224h328v-48c0-26.51-21.49-48-48-48H272l-64-64H48C21.49 64 0 85.49 0 112v278.046l69.077-118.418C86.214 242.25 117.989 224 152 224z"
-              />
-            </svg>
-            Z knihovny
-          </button>
+          <div className="AdjacentButtons">
+            <button
+              type="button"
+              className="DatoCMS-button DatoCMS-button--small"
+              onClick={() => {
+                createNewItem(
+                  field.attributes.validators.items_item_type.item_types[0],
+                )
+                  .then(item => {
+                    if (item) {
+                      values.push(item.id);
+                      setFieldValue(fieldPath, values);
+                    }
+                  });
+              }}
+            >
+              <svg viewBox="0 0 448 512" width="1em" height="1em">
+                <path
+                  d="M416 208H272V64c0-17.67-14.33-32-32-32h-32c-17.67 0-32 14.33-32 32v144H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h144v144c0 17.67 14.33 32 32 32h32c17.67 0 32-14.33 32-32V304h144c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z"
+                />
+              </svg>
+              Nový záznam
+            </button>
+            <button type="button" className="DatoCMS-button DatoCMS-button--small">
+              <svg viewBox="0 0 576 512" width="1em" height="1em">
+                <path
+                  d="M572.694 292.093L500.27 416.248A63.997 63.997 0 0 1 444.989 448H45.025c-18.523 0-30.064-20.093-20.731-36.093l72.424-124.155A64 64 0 0 1 152 256h399.964c18.523 0 30.064 20.093 20.73 36.093zM152 224h328v-48c0-26.51-21.49-48-48-48H272l-64-64H48C21.49 64 0 85.49 0 112v278.046l69.077-118.418C86.214 242.25 117.989 224 152 224z"
+                />
+              </svg>
+              Z knihovny
+            </button>
+          </div>
         </div>
       </div>
     );
