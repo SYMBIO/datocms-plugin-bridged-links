@@ -25,6 +25,7 @@ ul li > div {
   width: 100%;
   background: white;
   color: #34363a;
+  display: flex;
 }
 
 svg.hamburger {
@@ -81,4 +82,8 @@ button:first-of-type {
 .AdjacentButtons>* {
   display: inline-block;
   margin-right: 4px;
+}
+
+.datarow-left {
+   flex: 1;
 }

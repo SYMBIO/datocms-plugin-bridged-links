@@ -238,9 +238,11 @@ export default class Main extends Component {
           />
         </svg>
         <div key={`link_${dataRow.id}`}>
-          {`${apiKey.split('.')
-            .reduce((a, b) => a[b], dataRow)} ${fieldPath ===
-          'subtitle_advertises' ? this.DetectBreaks(dataRow.breaks) : ''}`}
+          <div className="datarow-left">
+            {`${apiKey.split('.')
+              .reduce((a, b) => a[b], dataRow)} ${fieldPath ===
+            'subtitle_advertises' ? this.DetectBreaks(dataRow.breaks) : ''}`}
+          </div>
           <div className="AdjacentButtons">
             <button
               type="button"
