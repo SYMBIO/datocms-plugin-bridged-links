@@ -29,7 +29,7 @@ ul li > div {
 
 svg.hamburger {
   cursor: grab;
-  margin-right: 10px;
+  margin-right: 15px;
   fill: currentcolor;
   color: rgb(132, 132, 132);
 }

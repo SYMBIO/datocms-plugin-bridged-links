@@ -223,8 +223,8 @@ export default class Main extends Component {
       <li key={`link_${dataRow.id}`} id={`dragdrop_${dataRow.id}`}>
         <svg
           className="hamburger"
-          width="14"
-          height="14"
+          width="20"
+          height="20"
           viewBox="0 0 92.833 92.833"
         >
           <path
