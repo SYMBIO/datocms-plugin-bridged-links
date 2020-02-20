@@ -111,66 +111,78 @@ export default class Main extends Component {
     const { setFieldValue, fieldPath } = this.props;
     const { values } = this.state;
 
-    interact('ul div').dropzone({
-      overlap: 0.05,
+    interact('ul div')
+      .dropzone({
+        overlap: 0.05,
 
-      ondropactivate(event) {
-        event.target.querySelector('li').classList.toggle('drop-active');
-      },
-      ondragenter(event) {
-        event.relatedTarget.querySelector('li').classList.toggle('can-drop');
-      },
-      ondragleave(event) {
-        event.relatedTarget.querySelector('li').classList.toggle('can-drop');
-      },
-      ondrop(event) {
-        const dropzoneArrayIndex = values.indexOf(
-          event.target.id.split('_')[1],
-        );
-        const draggableArrayIndex = values.indexOf(
-          event.relatedTarget.id.split('_')[1],
-        );
-
-        const removedValue = values.splice(
-          dropzoneArrayIndex,
-          1,
-          values[draggableArrayIndex],
-        );
-        values.splice(draggableArrayIndex, 1, removedValue[0]);
-
-        event.relatedTarget.querySelector('li').classList.toggle('can-drop');
-        setFieldValue(fieldPath, values);
-      },
-      ondropdeactivate(event) {
-        const e = event;
-        event.target.querySelector('li').classList.toggle('drop-active');
-        e.relatedTarget.style.transform = 'translate(0px, 0px)';
-        position.y = 0;
-      },
-    });
-
-    interact('ul div').draggable({
-      modifiers: [
-        interact.modifiers.restrictRect({
-          restriction: 'parent',
-          endOnly: false,
-        }),
-      ],
-      startAxis: 'y',
-      lockAxis: 'y',
-      listeners: {
-        move(event) {
-          if (values.length > 1) {
-            const draggableElement = event.target;
-
-            position.x += event.dx;
-            position.y += event.dy;
-
-            draggableElement.style.transform = `translate(${position.x}px, ${position.y}px)`;
-          }
+        ondropactivate(event) {
+          event.target.querySelector('li')
+            .classList
+            .toggle('drop-active');
         },
-      },
-    });
+        ondragenter(event) {
+          event.relatedTarget.querySelector('li')
+            .classList
+            .toggle('can-drop');
+        },
+        ondragleave(event) {
+          event.relatedTarget.querySelector('li')
+            .classList
+            .toggle('can-drop');
+        },
+        ondrop(event) {
+          const dropzoneArrayIndex = values.indexOf(
+            event.target.id.split('_')[1],
+          );
+          const draggableArrayIndex = values.indexOf(
+            event.relatedTarget.id.split('_')[1],
+          );
+
+          const removedValue = values.splice(
+            dropzoneArrayIndex,
+            1,
+            values[draggableArrayIndex],
+          );
+          values.splice(draggableArrayIndex, 1, removedValue[0]);
+
+          event.relatedTarget.querySelector('li')
+            .classList
+            .toggle('can-drop');
+          setFieldValue(fieldPath, values);
+        },
+        ondropdeactivate(event) {
+          const e = event;
+          event.target.querySelector('li')
+            .classList
+            .toggle('drop-active');
+          e.relatedTarget.style.transform = 'translate(0px, 0px)';
+          position.y = 0;
+        },
+      });
+
+    interact('ul div')
+      .draggable({
+        modifiers: [
+          interact.modifiers.restrictRect({
+            restriction: 'parent',
+            endOnly: false,
+          }),
+        ],
+        startAxis: 'y',
+        lockAxis: 'y',
+        listeners: {
+          move(event) {
+            if (values.length > 1) {
+              const draggableElement = event.target;
+
+              position.x += event.dx;
+              position.y += event.dy;
+
+              draggableElement.style.transform = `translate(${position.x}px, ${position.y}px)`;
+            }
+          },
+        },
+      });
   }
 
   DetectBreaks(breakIndexes) {
@@ -183,9 +195,10 @@ export default class Main extends Component {
 
     let breaksString = '';
 
-    breakIndexes.sort().forEach(breakIndex => {
-      breaksString += `${breaks[breakIndex]}, `;
-    });
+    breakIndexes.sort()
+      .forEach(breakIndex => {
+        breaksString += `${breaks[breakIndex]}, `;
+      });
 
     breaksString = breaksString.slice(0, breaksString.length - 2);
 
@@ -207,29 +220,37 @@ export default class Main extends Component {
     const dataRow = data.find(bridged => bridged.id === fieldValue);
 
     return (
-      <div key={`link_${dataRow.id}`} id={`dragdrop_${dataRow.id}`}>
+      <li key={`link_${dataRow.id}`} id={`dragdrop_${dataRow.id}`}>
         <svg
           className="hamburger"
           width="14"
           height="14"
           viewBox="0 0 92.833 92.833"
         >
-          <path d="M89.834,1.75H3c-1.654,0-3,1.346-3,3v13.334c0,1.654,1.346,3,3,3h86.833c1.653,0,3-1.346,3-3V4.75 C92.834,3.096,91.488,1.75,89.834,1.75z" />
-          <path d="M89.834,36.75H3c-1.654,0-3,1.346-3,3v13.334c0,1.654,1.346,3,3,3h86.833c1.653,0,3-1.346,3-3V39.75 C92.834,38.096,91.488,36.75,89.834,36.75z" />
-          <path d="M89.834,71.75H3c-1.654,0-3,1.346-3,3v13.334c0,1.654,1.346,3,3,3h86.833c1.653,0,3-1.346,3-3V74.75 C92.834,73.095,91.488,71.75,89.834,71.75z" />
+          <path
+            d="M89.834,1.75H3c-1.654,0-3,1.346-3,3v13.334c0,1.654,1.346,3,3,3h86.833c1.653,0,3-1.346,3-3V4.75 C92.834,3.096,91.488,1.75,89.834,1.75z"
+          />
+          <path
+            d="M89.834,36.75H3c-1.654,0-3,1.346-3,3v13.334c0,1.654,1.346,3,3,3h86.833c1.653,0,3-1.346,3-3V39.75 C92.834,38.096,91.488,36.75,89.834,36.75z"
+          />
+          <path
+            d="M89.834,71.75H3c-1.654,0-3,1.346-3,3v13.334c0,1.654,1.346,3,3,3h86.833c1.653,0,3-1.346,3-3V74.75 C92.834,73.095,91.488,71.75,89.834,71.75z"
+          />
         </svg>
-        <li key={`link_${dataRow.id}`}>
-          {`${apiKey.split('.').reduce((a, b) => a[b], dataRow)} ${fieldPath ===
-            'subtitle_advertises' ? this.DetectBreaks(dataRow.breaks) : ''}`}
+        <div key={`link_${dataRow.id}`}>
+          {`${apiKey.split('.')
+            .reduce((a, b) => a[b], dataRow)} ${fieldPath ===
+          'subtitle_advertises' ? this.DetectBreaks(dataRow.breaks) : ''}`}
           <button
             type="button"
             className="DatoCMS-button--micro"
             onClick={() => {
-              editItem(fieldValue).then(item => {
-                if (item) {
-                  this.updateData();
-                }
-              });
+              editItem(fieldValue)
+                .then(item => {
+                  if (item) {
+                    this.updateData();
+                  }
+                });
             }}
           >
             Upravit
@@ -244,8 +265,8 @@ export default class Main extends Component {
           >
             Odstranit
           </button>
-        </li>
-      </div>
+        </div>
+      </li>
     );
   }
 
@@ -266,42 +287,49 @@ export default class Main extends Component {
 
     return (
       <div className="container">
-        {data.length > 0 ? (
-          Array.isArray(values) && values.length > 0 ? (
-            <ul>
-              {values.map(fieldValue => this.renderRow(fieldValue))}
-              <button
-                type="button"
-                className="DatoCMS-button--micro"
-                onClick={() => {
-                  createNewItem(
-                    field.attributes.validators.items_item_type.item_types[0],
-                  ).then(item => {
-                    if (item) {
-                      values.push(item.id);
-                      setFieldValue(fieldPath, values);
-                    }
-                  });
-                }}
-              >
-                <svg viewBox="0 0 448 512" width="1em" height="1em">
-                  <path d="M416 208H272V64c0-17.67-14.33-32-32-32h-32c-17.67 0-32 14.33-32 32v144H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h144v144c0 17.67 14.33 32 32 32h32c17.67 0 32-14.33 32-32V304h144c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z" />
-                </svg>
-                Nový záznam
-              </button>
-              <button type="button" className="DatoCMS-button--micro">
-                <svg viewBox="0 0 576 512" width="1em" height="1em">
-                  <path d="M572.694 292.093L500.27 416.248A63.997 63.997 0 0 1 444.989 448H45.025c-18.523 0-30.064-20.093-20.731-36.093l72.424-124.155A64 64 0 0 1 152 256h399.964c18.523 0 30.064 20.093 20.73 36.093zM152 224h328v-48c0-26.51-21.49-48-48-48H272l-64-64H48C21.49 64 0 85.49 0 112v278.046l69.077-118.418C86.214 242.25 117.989 224 152 224z" />
-                </svg>
-                Z knihovny
-              </button>
-            </ul>
+        <ul>
+          {data.length > 0 ? (
+            Array.isArray(values) && values.length > 0 ? (
+              values.map(fieldValue => this.renderRow(fieldValue))
+            ) : (
+              <li>Zatím žádné položky...</li>
+            )
           ) : (
-            'Zatím žádné položky...'
-          )
-        ) : (
-          'V cílovém modulu nejsou žádné položky (nebo jste chybně zadali cestu)'
-        )}
+            <li>V cílovém modulu nejsou žádné položky (nebo jste chybně zadali cestu)</li>
+          )}
+        </ul>
+        <div>
+          <button
+            type="button"
+            className="DatoCMS-button--micro"
+            onClick={() => {
+              createNewItem(
+                field.attributes.validators.items_item_type.item_types[0],
+              )
+                .then(item => {
+                  if (item) {
+                    values.push(item.id);
+                    setFieldValue(fieldPath, values);
+                  }
+                });
+            }}
+          >
+            <svg viewBox="0 0 448 512" width="1em" height="1em">
+              <path
+                d="M416 208H272V64c0-17.67-14.33-32-32-32h-32c-17.67 0-32 14.33-32 32v144H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h144v144c0 17.67 14.33 32 32 32h32c17.67 0 32-14.33 32-32V304h144c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z"
+              />
+            </svg>
+            Nový záznam
+          </button>
+          <button type="button" className="DatoCMS-button--micro">
+            <svg viewBox="0 0 576 512" width="1em" height="1em">
+              <path
+                d="M572.694 292.093L500.27 416.248A63.997 63.997 0 0 1 444.989 448H45.025c-18.523 0-30.064-20.093-20.731-36.093l72.424-124.155A64 64 0 0 1 152 256h399.964c18.523 0 30.064 20.093 20.73 36.093zM152 224h328v-48c0-26.51-21.49-48-48-48H272l-64-64H48C21.49 64 0 85.49 0 112v278.046l69.077-118.418C86.214 242.25 117.989 224 152 224z"
+              />
+            </svg>
+            Z knihovny
+          </button>
+        </div>
       </div>
     );
   }
