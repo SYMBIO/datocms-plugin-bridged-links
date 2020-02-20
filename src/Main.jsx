@@ -288,14 +288,8 @@ export default class Main extends Component {
     return (
       <div className="container">
         <ul>
-          {data.length > 0 ? (
-            Array.isArray(values) && values.length > 0 ? (
-              values.map(fieldValue => this.renderRow(fieldValue))
-            ) : (
-              <li>Zatím žádné položky...</li>
-            )
-          ) : (
-            <li>V cílovém modulu nejsou žádné položky (nebo jste chybně zadali cestu)</li>
+          {data.length > 0 && Array.isArray(values) && values.length > 0 && (
+            values.map(fieldValue => this.renderRow(fieldValue))
           )}
         </ul>
         <div>
