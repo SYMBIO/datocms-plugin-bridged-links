@@ -58,3 +58,9 @@ button:first-of-type {
   margin-right: .5em;
   vertical-align: text-top;
 }
+
+.DatoCMS-button--small svg {
+  fill: #ed6b5e;
+  margin-right: .5em;
+  vertical-align: text-top;
+}
