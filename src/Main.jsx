@@ -241,30 +241,32 @@ export default class Main extends Component {
           {`${apiKey.split('.')
             .reduce((a, b) => a[b], dataRow)} ${fieldPath ===
           'subtitle_advertises' ? this.DetectBreaks(dataRow.breaks) : ''}`}
-          <button
-            type="button"
-            className="DatoCMS-button DatoCMS-button--micro"
-            onClick={() => {
-              editItem(fieldValue)
-                .then(item => {
-                  if (item) {
-                    this.updateData();
-                  }
-                });
-            }}
-          >
-            Upravit
-          </button>
-          <button
-            type="button"
-            className="DatoCMS-button DatoCMS-button--micro DatoCMS-button--alert"
-            onClick={() => {
-              values.splice(values.indexOf(fieldValue), 1);
-              setFieldValue(fieldPath, values);
-            }}
-          >
-            Odstranit
-          </button>
+          <div className="AdjacentButtons">
+            <button
+              type="button"
+              className="DatoCMS-button DatoCMS-button--micro"
+              onClick={() => {
+                editItem(fieldValue)
+                  .then(item => {
+                    if (item) {
+                      this.updateData();
+                    }
+                  });
+              }}
+            >
+              Upravit
+            </button>
+            <button
+              type="button"
+              className="DatoCMS-button DatoCMS-button--micro DatoCMS-button--alert"
+              onClick={() => {
+                values.splice(values.indexOf(fieldValue), 1);
+                setFieldValue(fieldPath, values);
+              }}
+            >
+              Odstranit
+            </button>
+          </div>
         </div>
       </li>
     );
