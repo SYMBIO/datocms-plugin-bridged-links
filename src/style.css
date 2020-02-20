@@ -69,3 +69,7 @@ button:first-of-type {
   margin-right: .5em;
   vertical-align: text-top;
 }
+
+.DatoCMS-button--alert {
+  border-color: rgba(255,94,73,.4);
+}

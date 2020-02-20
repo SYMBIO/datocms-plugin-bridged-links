@@ -257,7 +257,7 @@ export default class Main extends Component {
           </button>
           <button
             type="button"
-            className="DatoCMS-button DatoCMS-button--micro"
+            className="DatoCMS-button DatoCMS-button--micro DatoCMS-button--alert"
             onClick={() => {
               values.splice(values.indexOf(fieldValue), 1);
               setFieldValue(fieldPath, values);
