@@ -292,7 +292,7 @@ export default class Main extends Component {
             values.map(fieldValue => this.renderRow(fieldValue))
           )}
         </ul>
-        <div>
+        <div className="BelongsToInput__actions">
           <button
             type="button"
             className="DatoCMS-button DatoCMS-button--small"

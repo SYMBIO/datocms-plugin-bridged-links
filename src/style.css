@@ -73,3 +73,7 @@ button:first-of-type {
 .DatoCMS-button--alert {
   border-color: rgba(255,94,73,.4);
 }
+
+.BelongsToInput__actions {
+  margin-top: 8px;
+}
