@@ -2,6 +2,7 @@
   background-color: white;
   padding: 0;
   color: #848484;
+  font-size: 0.8375rem;
 }
 
 .drop-active {
@@ -24,7 +25,6 @@ ul li > div {
   width: 100%;
   background: white;
   color: #34363a;
-  font-size: 0.8375rem;
 }
 
 svg.hamburger {

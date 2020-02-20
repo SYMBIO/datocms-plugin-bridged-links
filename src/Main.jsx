@@ -314,7 +314,7 @@ export default class Main extends Component {
                   d="M416 208H272V64c0-17.67-14.33-32-32-32h-32c-17.67 0-32 14.33-32 32v144H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h144v144c0 17.67 14.33 32 32 32h32c17.67 0 32-14.33 32-32V304h144c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z"
                 />
               </svg>
-              Nový záznam
+              Nová položka &quot;Inscenační tým&quot;
             </button>
             <button type="button" className="DatoCMS-button DatoCMS-button--small">
               <svg viewBox="0 0 576 512" width="1em" height="1em">
