@@ -160,7 +160,7 @@ export default class Main extends Component {
         },
       });
 
-    interact('ul div')
+    interact('ul li')
       .draggable({
         modifiers: [
           interact.modifiers.restrictRect({
