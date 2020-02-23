@@ -339,6 +339,7 @@ export default class Main extends Component {
                         .then(res => res.json())
                         .then(res => {
                           newData.push(res.data[itemType.attributes.api_key]);
+                          console.log(newData);
                           this.setState({
                             loading: false,
                             values: newValues,
