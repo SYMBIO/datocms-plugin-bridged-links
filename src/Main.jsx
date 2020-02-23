@@ -312,13 +312,14 @@ export default class Main extends Component {
                       setFieldValue(fieldPath, newValues);
                       const newData = [...data];
 
-                      const query = ` {
+                      const query = `{
                         staff(filter: {id: {eq: "${item.id}"}}) {
                           id
                           field {
                             title
                           }
-                        }`;
+                        }
+                      }`;
 
                       fetch('https://graphql.datocms.com/preview', {
                         method: 'POST',
