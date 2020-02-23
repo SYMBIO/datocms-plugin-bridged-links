@@ -307,6 +307,10 @@ export default class Main extends Component {
                 )
                   .then(item => {
                     if (item) {
+                      this.setState({
+                        loading: true,
+                      });
+
                       const newValues = [...values];
                       newValues.push(item.id);
                       setFieldValue(fieldPath, newValues);
@@ -336,6 +340,7 @@ export default class Main extends Component {
                         .then(res => {
                           newData.push(res.data[itemType.attributes.api_key]);
                           this.setState({
+                            loading: false,
                             values: newValues,
                             data: newData,
                           });
