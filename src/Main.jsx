@@ -309,6 +309,7 @@ export default class Main extends Component {
                     if (item) {
                       values.push(item.id);
                       setFieldValue(fieldPath, values);
+                      this.updateData();
                     }
                   });
               }}
