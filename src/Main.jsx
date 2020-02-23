@@ -283,7 +283,7 @@ export default class Main extends Component {
 
   render() {
     const { loading, data, values } = this.state;
-    const { createNewItem, field, setFieldValue, fieldPath } = this.props;
+    const { createNewItem, field, setFieldValue, fieldPath, itemType, token } = this.props;
 
     if (loading) {
       return <div className="container">Načítám data...</div>;
@@ -308,20 +308,37 @@ export default class Main extends Component {
                   .then(item => {
                     if (item) {
                       const newValues = [...values];
-                      const newData = [...data];
                       newValues.push(item.id);
-                      console.log(item);
-                      /* newData.push({
-                        id: item.id,
-                        field: {
-                          title: item.field
-                        }
-                      }) */
                       setFieldValue(fieldPath, newValues);
-                      this.setState({
-                        values: newValues,
-                        data: newData,
-                      });
+                      const newData = [...data];
+
+                      const query = ` {
+                        staff(filter: {id: {eq: "${item.id}"}}) {
+                          id
+                          field {
+                            title
+                          }
+                        }`;
+
+                      fetch('https://graphql.datocms.com/preview', {
+                        method: 'POST',
+                        headers: {
+                          'Content-Type': 'application/json',
+                          Accept: 'application/json',
+                          Authorization: `Bearer ${token}`,
+                        },
+                        body: JSON.stringify({
+                          query,
+                        }),
+                      })
+                        .then(res => res.json())
+                        .then(res => {
+                          newData.push(res.data[itemType.attributes.api_key]);
+                          this.setState({
+                            values: newValues,
+                            data: newData,
+                          });
+                        });
                     }
                   });
               }}
