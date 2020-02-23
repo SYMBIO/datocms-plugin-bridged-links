@@ -307,9 +307,21 @@ export default class Main extends Component {
                 )
                   .then(item => {
                     if (item) {
-                      values.push(item.id);
-                      setFieldValue(fieldPath, values);
-                      this.updateData();
+                      const newValues = [...values];
+                      const newData = [...data];
+                      newValues.push(item.id);
+                      console.log(item);
+                      /* newData.push({
+                        id: item.id,
+                        field: {
+                          title: item.field
+                        }
+                      }) */
+                      setFieldValue(fieldPath, newValues);
+                      this.setState({
+                        values: newValues,
+                        data: newData,
+                      });
                     }
                   });
               }}
