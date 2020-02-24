@@ -338,6 +338,7 @@ export default class Main extends Component {
                       })
                         .then(res => res.json())
                         .then(res => {
+                          console.log(res.data.staff);
                           newData.push(res.data.staff);
                           this.setState({
                             loading: false,
