@@ -283,7 +283,7 @@ export default class Main extends Component {
 
   render() {
     const { loading, data, values } = this.state;
-    const { createNewItem, field, setFieldValue, fieldPath, itemType, token } = this.props;
+    const { createNewItem, field, setFieldValue, fieldPath, token } = this.props;
 
     if (loading) {
       return <div className="container">Načítám data...</div>;
@@ -338,7 +338,6 @@ export default class Main extends Component {
                       })
                         .then(res => res.json())
                         .then(res => {
-                          console.log(res.data.staff);
                           newData.push(res.data.staff);
                           this.setState({
                             loading: false,
