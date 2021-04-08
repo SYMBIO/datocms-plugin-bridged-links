@@ -18,7 +18,7 @@ import './style.css';
   field: plugin.field,
   itemTypes: plugin.itemTypes,
 }))
-class Main extends Component {
+export default class Main extends Component {
   static propTypes = {
     itemId: PropTypes.string,
     token: PropTypes.string,
@@ -363,5 +363,3 @@ class Main extends Component {
     );
   }
 }
-
-export default Main;
