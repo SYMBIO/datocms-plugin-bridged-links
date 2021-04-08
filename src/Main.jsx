@@ -89,7 +89,7 @@ export default class Main extends Component {
       }),
     })
       .then(res => res.json())
-      .then(res => {
+      .then((res) => {
         if (!Array.isArray(data)) {
           this.setState({
             loading: false,
@@ -189,7 +189,7 @@ export default class Main extends Component {
 
     let breaksString = '';
 
-    breakIndexes.sort().forEach(breakIndex => {
+    breakIndexes.sort().forEach((breakIndex) => {
       breaksString += `${breaks[breakIndex]}, `;
     });
 
@@ -207,7 +207,9 @@ export default class Main extends Component {
   }
 
   renderRow(fieldValue) {
-    const { apiKey, fieldPath, setFieldValue, editItem } = this.props;
+    const {
+      apiKey, fieldPath, setFieldValue, editItem,
+    } = this.props;
     const { data, values } = this.state;
 
     const dataRow = data.find(bridged => bridged.id === fieldValue);
@@ -237,7 +239,7 @@ export default class Main extends Component {
               type="button"
               className="DatoCMS-button DatoCMS-button--micro"
               onClick={() => {
-                editItem(fieldValue).then(item => {
+                editItem(fieldValue).then((item) => {
                   if (item) {
                     this.updateData();
                   }
@@ -286,10 +288,10 @@ export default class Main extends Component {
     return (
       <div className="container">
         <ul>
-          {data.length > 0 &&
-            Array.isArray(values) &&
-            values.length > 0 &&
-            values.map(fieldValue => this.renderRow(fieldValue))}
+          {data.length > 0
+            && Array.isArray(values)
+            && values.length > 0
+            && values.map(fieldValue => this.renderRow(fieldValue))}
         </ul>
         <div className="BelongsToInput__actions">
           <div className="AdjacentButtons">
@@ -299,7 +301,7 @@ export default class Main extends Component {
               onClick={() => {
                 createNewItem(
                   field.attributes.validators.items_item_type.item_types[0],
-                ).then(item => {
+                ).then((item) => {
                   if (item) {
                     this.setState({
                       loading: true,
@@ -331,7 +333,7 @@ export default class Main extends Component {
                       }),
                     })
                       .then(res => res.json())
-                      .then(res => {
+                      .then((res) => {
                         newData.push(res.data.staff);
                         this.setState({
                           loading: false,
