@@ -18,7 +18,7 @@ import './style.css';
   field: plugin.field,
   itemTypes: plugin.itemTypes,
 }))
-export default class Main extends Component {
+class Main extends Component {
   static propTypes = {
     itemId: PropTypes.string,
     token: PropTypes.string,
@@ -131,10 +131,10 @@ export default class Main extends Component {
       },
       ondrop(event) {
         const dropzoneArrayIndex = values.indexOf(
-          event.target.id.split('_')[1],
+          event.target.id.split('dragdrop_')[1],
         );
         const draggableArrayIndex = values.indexOf(
-          event.relatedTarget.id.split('_')[1],
+          event.relatedTarget.id.split('dragdrop_')[1],
         );
 
         const removedValue = values.splice(
@@ -365,3 +365,5 @@ export default class Main extends Component {
     );
   }
 }
+
+export default Main;

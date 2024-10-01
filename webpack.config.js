@@ -12,9 +12,9 @@ module.exports = {
   },
   devtool: 'source-map',
   devServer: {
-    contentBase: './',
-    disableHostCheck: true,
-    public: 'http://localhost:5000',
+    static: './',
+    allowedHosts: 'all',
+    hot: true,
   },
   module: {
     rules: [
